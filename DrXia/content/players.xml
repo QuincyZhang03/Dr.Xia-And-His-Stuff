@@ -1,0 +1,7 @@
+<players root="gfx/characters/costumes/" portraitroot="gfx/ui/stage/" nameimageroot="gfx/ui/boss/" >
+	<player name="DrXia" skin="character_drxia.png" hp="6" armor="2"
+          nameimage="playername_drxia.png" 
+          portrait="playerportrait_drxia.png" 
+          skinColor="-1"
+		  birthright="Faster Heart Beats" />
+</players>

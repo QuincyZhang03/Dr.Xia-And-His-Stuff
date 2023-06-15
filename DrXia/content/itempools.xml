@@ -1,0 +1,70 @@
+<ItemPools>
+	<Pool Name="treasure">
+		<Item Name="Cardiograph" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+		<Item Name="Golden Spoon Bender" Weight="0.7" DecreaseBy="0.7" RemoveOn="0.07" />
+		<Item Name="Syndrome of Lost" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+		<Item Name="Advanced Mathematics" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Crying White Fruit" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="TB Anger" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Fat Shark" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Tenshi Doll" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+		<Item Name="Idle Dog" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+		<Item Name="Pusheen Cat" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+		<Item Name="Winter Flower Record" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+	</Pool>
+	<Pool Name="shop">
+		<Item Name="TB Anger" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Pusheen Cat" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+		<Item Name="Winter Flower Record" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+	</Pool>
+	<Pool Name="devil">
+		<Item Name="Cardiograph" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+	</Pool>
+	<Pool Name="angel">
+		<Item Name="Golden Spoon Bender" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+		<Item Name="Tenshi Doll" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+	</Pool>
+	<Pool Name="secret">
+		<Item Name="Cardiograph" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+		<Item Name="Golden Spoon Bender" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+	</Pool>
+	<Pool Name="boss">
+		<Item Name="Morning Schedule" Weight="0.8" DecreaseBy="0.8" RemoveOn="0.08" />
+		<Item Name="Fat Shark" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
+		<Item Name="Winter Flower Record" Weight="0.8" DecreaseBy="0.8" RemoveOn="0.08" />
+	</Pool>
+	<Pool Name="library">
+		<Item Name="Advanced Mathematics" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
+	</Pool>
+	<Pool Name="greedTreasure">
+		<Item Name="Golden Spoon Bender" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+		<Item Name="Cardiograph" Weight="0.7" DecreaseBy="0.7" RemoveOn="0.07" />
+		<Item Name="Crying White Fruit" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+	<Pool Name="greedBoss">
+		<Item Name="Morning Schedule" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05" />
+		<Item Name="Fat Shark" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Idle Dog" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+		<Item Name="TB Anger" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+	<Pool Name="greedShop">
+		<Item Name="Morning Schedule" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+		<Item Name="Fat Shark" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Syndrome of Lost" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+		<Item Name="Tenshi Doll" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+		<Item Name="Winter Flower Record" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+	</Pool>
+	<Pool Name="greedDevil">
+		<Item Name="Cardiograph" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+	</Pool>
+	<Pool Name="greedAngel">
+		<Item Name="Golden Spoon Bender" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+		<Item Name="Tenshi Doll" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+	</Pool>
+	<Pool Name="goldenChest">
+		<Item Name="Morning Schedule" Weight="1" DecreaseBy="0.4" RemoveOn="0.1" />
+		<Item Name="Fat Shark" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
+		<Item Name="Tenshi Doll" Weight="0.5" DecreaseBy="0.2" RemoveOn="0.05" />
+		<Item Name="Winter Flower Record" Weight="1" DecreaseBy="0.4" RemoveOn="0.1" />
+	</Pool>
+</ItemPools>

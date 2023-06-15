@@ -1,0 +1,5 @@
+<sounds root="sfx/">
+	<sound name="Pill_Appetizing">
+		<sample weight="1" path="pill_appetizing.wav" />
+	</sound>
+</sounds>
