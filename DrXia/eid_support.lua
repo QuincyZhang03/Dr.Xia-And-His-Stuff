@@ -129,9 +129,20 @@ return function(DrXiaElements)
 			"zh_cn"
 		},
 		{
+			DrXiaElements.TRINKET_XIAS_ROSARY_BEAD,
+			"8%概率将道具替换为{{Collectible3}}弯勺魔术# 2%概率将道具替换为{{Collectible"..DrXiaElements.COLLECTIBLE_GOLDEN_SPOON_BENDER.."}}黄金弯勺魔术",
+			"夏之念珠段",
+			"zh_cn"
+		},
+		{
 			DrXiaElements.TRINKET_LIL_PIGGY,
 			"↑ {{Tears}} +1 tears when a layer of {{ColorCyan}}stable{{ColorText}} homing effect is stacked, including familiars who fire their own homing tears"
+		},
+		{
+			DrXiaElements.TRINKET_XIAS_ROSARY_BEAD,
+			"Item has a 8% chance to alter to {{Collectible3}}Spoon Bender# 2% chance to alter to {{Collectible"..DrXiaElements.COLLECTIBLE_GOLDEN_SPOON_BENDER.."}}Golden Spoon Bender",
 		}
+
 	}
 	local Cards={
 		{

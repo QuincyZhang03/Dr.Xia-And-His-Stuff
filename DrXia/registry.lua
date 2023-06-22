@@ -16,6 +16,7 @@ DrXiaElements.COLLECTIBLE_PUSHEEN_CAT=Isaac.GetItemIdByName("Pusheen Cat")
 DrXiaElements.COLLECTIBLE_WINTER_FLOWER_RECORD=Isaac.GetItemIdByName("Winter Flower Record")
 
 DrXiaElements.TRINKET_LIL_PIGGY=Isaac.GetTrinketIdByName("Lil Piggy")
+DrXiaElements.TRINKET_XIAS_ROSARY_BEAD=Isaac.GetTrinketIdByName("Xia's Rosary Bead")
 
 DrXiaElements.CHARACTER_DRXIA=Isaac.GetPlayerTypeByName("DrXia")
 DrXiaElements.COSTUME_DRXIA_HAIR=Isaac.GetCostumeIdByPath("gfx/characters/character_drxia_accessories.anm2")
@@ -68,6 +69,9 @@ local Collectibles = {
 local Trinkets={
 	[DrXiaElements.TRINKET_LIL_PIGGY]={
 		zh={"猪猪","哦..."}
+	},
+	[DrXiaElements.TRINKET_XIAS_ROSARY_BEAD]={
+		zh={"夏之念珠段","我推的弯勺！"}
 	}
 }
 local Pills={

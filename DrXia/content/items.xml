@@ -13,4 +13,5 @@
 	<passive id="12" cache="speed range damage tearflag" name="Winter Flower Record" description="Where are you moving?" gfx="Winter_Flower_Record.png" tags="offensive" quality="3" />
 
 	<trinket id="1" cache="firedelay" name="Lil Piggy" description="Oooo..." gfx="Lil_Piggy.png" />
+	<trinket id="2" cache="" name="Xia's Rosary Bead" description="My crush for Spoon Bender!" gfx="Xia's_Rosary_Bead.png"/>
 </items>

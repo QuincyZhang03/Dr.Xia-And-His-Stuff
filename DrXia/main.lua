@@ -2,7 +2,7 @@ local DrXia = RegisterMod("Dr.Xia And His Stuff", 1)
 
 local DrXiaElements = include("registry")
 
-DrXiaAPI={}
+DrXiaAPI = {}
 
 function DrXiaAPI:GetDrXiaElements()
 	return DrXiaElements
@@ -519,28 +519,32 @@ function DrXia:OnUseAppetizing(pill, player, flags)
 	local data = player:GetData()
 	data.appetizing = true
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_FALSE_PHD) then
-		Isaac.Spawn(EntityType.ENTITY_PICKUP,PickupVariant.PICKUP_HEART,HeartSubType.HEART_BLACK,Game():GetRoom():FindFreePickupSpawnPosition(player.Position,0,true),Vector(0,0),nil)
+		Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_BLACK,
+			Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 0, true), Vector(0, 0), nil)
 	end
 end
 
 DrXia:AddCallback(ModCallbacks.MC_USE_PILL, DrXia.OnUseAppetizing, DrXiaElements.PILL_APPETIZING)
 
-function DrXia:ConvertAppetizing(pillEffect,pillColor)
-	if pillEffect==DrXiaElements.PILL_APPETIZING then
-		local player_num=Game():GetNumPlayers()
-		local shouldConvert=false
-		for i=0,player_num do
-			local currentPlayer=Game():GetPlayer(i)
+function DrXia:ConvertAppetizing(pillEffect, pillColor)
+	if pillEffect == DrXiaElements.PILL_APPETIZING then
+		local player_num = Game():GetNumPlayers()
+		local shouldConvert = false
+		for i = 0, player_num do
+			local currentPlayer = Game():GetPlayer(i)
 			if currentPlayer:HasCollectible(CollectibleType.COLLECTIBLE_FALSE_PHD) then
 				return pillEffect
 			end
-			shouldConvert=shouldConvert or currentPlayer:HasCollectible(CollectibleType.COLLECTIBLE_PHD) or currentPlayer:HasCollectible(CollectibleType.COLLECTIBLE_LUCKY_FOOT) or currentPlayer:HasCollectible(CollectibleType.COLLECTIBLE_VIRGO)
+			shouldConvert = shouldConvert or currentPlayer:HasCollectible(CollectibleType.COLLECTIBLE_PHD) or
+			currentPlayer:HasCollectible(CollectibleType.COLLECTIBLE_LUCKY_FOOT) or
+			currentPlayer:HasCollectible(CollectibleType.COLLECTIBLE_VIRGO)
 		end
 		if shouldConvert then
 			return PillEffect.PILLEFFECT_SPEED_UP
 		end
 	end
 end
+
 DrXia:AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, DrXia.ConvertAppetizing)
 
 function DrXia:ReverseControl(ent, hook, button_action)
@@ -613,11 +617,10 @@ end
 DrXia:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, DrXia.RecordModify)
 
 function DrXia:PlayerCollides(player, collider, low)
-	if player:HasCollectible(DrXiaElements.COLLECTIBLE_WINTER_FLOWER_RECORD) 
-		and collider:IsVulnerableEnemy() 
-		and low 
+	if player:HasCollectible(DrXiaElements.COLLECTIBLE_WINTER_FLOWER_RECORD)
+		and collider:IsVulnerableEnemy()
+		and low
 		and collider:GetEntityFlags() & EntityFlag.FLAG_FRIENDLY == 0 then
-
 		local player_position = player.Position
 		local enemy_position = collider.Position
 		local linear_vector = enemy_position - player_position
@@ -634,6 +637,33 @@ end
 
 DrXia:AddCallback(ModCallbacks.MC_PRE_PLAYER_COLLISION, DrXia.PlayerCollides, 0) --0 for player while 1 for co-op baby.
 
+--v1.8.0 starts
+function DrXia:AlterSpoonBender(origin, pool, decrease, seed)
+	local originInfo = Isaac.GetItemConfig():GetCollectible(origin)
+	if not originInfo:HasTags(ItemConfig.TAG_QUEST) then
+		local player_num = Game():GetNumPlayers()
+		local shouldAlter = false
+		for i = 0, player_num do
+			local currentPlayer = Game():GetPlayer(i)
+			if currentPlayer:HasTrinket(DrXiaElements.TRINKET_XIAS_ROSARY_BEAD) then
+				shouldAlter = true
+			end
+		end
+
+		if shouldAlter then
+			local alterRNG = RNG()
+			alterRNG:SetSeed(seed, 35) --35 is officially recommended
+			local diceResult = alterRNG:RandomFloat()
+			if diceResult < 0.08 then
+				return CollectibleType.COLLECTIBLE_SPOON_BENDER
+			elseif diceResult < 0.1 then
+				return DrXiaElements.COLLECTIBLE_GOLDEN_SPOON_BENDER
+			end
+		end
+	end
+end
+
+DrXia:AddCallback(ModCallbacks.MC_POST_GET_COLLECTIBLE, DrXia.AlterSpoonBender)
 -- global initialization starts
 function DrXia:InitVariables(continued)
 	RunContinued = continued
