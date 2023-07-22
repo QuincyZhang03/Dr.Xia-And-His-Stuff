@@ -1,0 +1,13 @@
+<wisps gfxroot="gfx/familiar/wisps/">
+	<color name="tear_advanced_mathematics" r="176" g="600" b="212"/>
+	<color name="core_advanced_mathematics" r="50" g="255" b="50"/>
+	<color name="flame_advanced_mathematics" r="0" g="0" b="0" or="176" og="234" ob="212"/>
+
+	<color name="tear_crying_white_fruit" r="250" g="250" b="250" or="20" og="50" ob="50"/>
+	<color name="core_crying_white_fruit" r="207" g="249" b="255"/>
+	<color name="flame_crying_white_fruit" r="0" g="0" b="0" or="207" og="249" ob="255"/>
+
+
+	<wisp id="5" hp="3" layer="2" damage="3" tearScale="0.75" fireDelay="45" shotSpeed="1" tearFlags="14" flameColor="flame_advanced_mathematics" coreColor="core_advanced_mathematics" tearColor="tear_advanced_mathematics" />
+	<wisp id="6" hp="5" layer="1" damage="5" tearScale="0.9" fireDelay="40" shotSpeed="0.8" flameColor="flame_crying_white_fruit" coreColor="core_crying_white_fruit" tearColor="tear_crying_white_fruit" />
+</wisps>

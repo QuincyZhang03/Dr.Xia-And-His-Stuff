@@ -26,13 +26,13 @@ return function(DrXiaElements)
 		},
 		{
 			DrXiaElements.COLLECTIBLE_ADVANCED_MATHEMATICS,
-			"{{Confusion}} 使用后，房间内所有敌人混乱2.5秒",
+			"{{Confusion}} 使用后，房间内所有敌人混乱2.5秒 #{{Slow}} 触发一次\"好困...\"的效果",
 			"高等数学",
 			"zh_cn"
 		},
 		{
 			DrXiaElements.COLLECTIBLE_CRYING_WHITE_FRUIT,
-			"↓ 使用后，角色受到两颗心的伤害#角色获得护盾效果，持续10秒#冷却时间15秒#{{Warning}} 优先伤害红心",
+			"↓ 使用后，角色受到两颗心的伤害#角色获得护盾效果，持续10秒#冷却时间15秒#{{Warning}} 优先伤害红心#{{Warning}} 不致死",
 			"哭泣的白果子",
 			"zh_cn"
 		},
@@ -90,11 +90,11 @@ return function(DrXiaElements)
 		},
 		{
 			DrXiaElements.COLLECTIBLE_ADVANCED_MATHEMATICS,
-			"{{Confusion}} Apply confusion to all the enemies in the room for 2.5 seconds",
+			"{{Confusion}} Apply confusion to all the enemies in the room for 2.5 seconds #{{Slow}} Raise the effect of \"I'm Drowsy\"",
 		},
 		{
 			DrXiaElements.COLLECTIBLE_CRYING_WHITE_FRUIT,
-			"↓ Deal a 2-heart damage to Isaac#Grant a shield effect to Isaac for 10 seconds#15-second cooldown#{{Warning}} Red hearts enjoy priority"
+			"↓ Deal a 2-heart damage to Isaac#Grant a shield effect to Isaac for 10 seconds#15-second cooldown#{{Warning}} Red hearts enjoy priority#{{Warning}} Won't cause death"
 		},
 		{
 			DrXiaElements.COLLECTIBLE_TB_ANGER,

@@ -14,7 +14,7 @@ This is the first time I've tried to make my own mod. I haven't completely maste
 Totally, 1 new character, 12 collectibles(comprising 9 passive ones and 3 active ones), 2 trinkets, 1 card, 1 pill and 1 new challenge are added. Most of them might have been made for fun and a bit unfair. If any bugs are found, an early feedback will be appreciated!
 Last but not least, thanks to the translation library provided by Goganidze from Steam Community. And also, thank those who have accompanied me for these days when I'm playing with The Binding of Isaac!
 (EID is completely supported in both Simplified Chinese and English. Have fun:) )</description>
-    <version>1.8.1</version>
+    <version>1.8.2</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>

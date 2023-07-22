@@ -367,6 +367,8 @@ function DrXia:OnUseAdvancedMathematics(item, rng, player, flags, slot, data)
 			ent:AddConfusion(EntityRef(player), 75, false)
 		end
 	end
+	player:UsePill(PillEffect.PILLEFFECT_IM_DROWSY, PillColor.PILL_NULL,
+		UseFlag.USE_NOANIM|UseFlag.USE_OWNED|UseFlag.USE_NOANNOUNCER|UseFlag.USE_NOHUD)
 	return true
 end
 
@@ -374,6 +376,13 @@ DrXia:AddCallback(ModCallbacks.MC_USE_ITEM, DrXia.OnUseAdvancedMathematics,
 	DrXiaElements.COLLECTIBLE_ADVANCED_MATHEMATICS)
 
 function DrXia:OnUseCryingWhiteFruit(item, rng, player, flags, slot, data)
+	if (DrXia:getHealth(player) <= 4) then
+		return {
+			Discharge = false,
+			Remove = false,
+			ShowAnim = false,
+		}
+	end
 	player:TakeDamage(4, DamageFlag.DAMAGE_RED_HEARTS | DamageFlag.DAMAGE_INVINCIBLE | DamageFlag.DAMAGE_IV_BAG,
 		EntityRef(player), 0)
 	player:UseActiveItem(CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS, UseFlag.USE_NOANIM)
@@ -536,8 +545,8 @@ function DrXia:ConvertAppetizing(pillEffect, pillColor)
 				return pillEffect
 			end
 			shouldConvert = shouldConvert or currentPlayer:HasCollectible(CollectibleType.COLLECTIBLE_PHD) or
-			currentPlayer:HasCollectible(CollectibleType.COLLECTIBLE_LUCKY_FOOT) or
-			currentPlayer:HasCollectible(CollectibleType.COLLECTIBLE_VIRGO)
+				currentPlayer:HasCollectible(CollectibleType.COLLECTIBLE_LUCKY_FOOT) or
+				currentPlayer:HasCollectible(CollectibleType.COLLECTIBLE_VIRGO)
 		end
 		if shouldConvert then
 			return PillEffect.PILLEFFECT_SPEED_UP

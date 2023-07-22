@@ -3,7 +3,7 @@
 	<passive id="2" cache="firedelay range tearcolor tearflag" name="Golden Spoon Bender" description="Smooth Gameplay!" gfx="Golden_Spoon_Bender.png" tags="offensive" quality="4" />
 	<passive id="3" cache="speed" name="Morning Schedule" description="I am late!" gfx="Morning_Schedule.png" tags="offensive" quality="2" />
 	<passive id="4" cache="speed" name="Syndrome of Lost" description="Have I been here...?" gfx="Syndrome_of_Lost.png" tags="offensive" quality="1" />
-	<active id="5" cache="" name="Advanced Mathematics" description="Dogs Don't Learn!" gfx="Advanced_Mathematics.png" tags="offensive book" maxcharges="3" quality="0" />
+	<active id="5" cache="" name="Advanced Mathematics" description="Dogs Don't Learn!" gfx="Advanced_Mathematics.png" tags="offensive book" maxcharges="3" quality="1" />
 	<active id="6" cache="" name="Crying White Fruit" description="Woo woo woo..." gfx="Crying_White_Fruit.png" tags="nolostbr" maxcharges="450" chargetype="timed" quality="2" />
 	<active id="7" cache="" name="TB Anger" description="What the HELL is this??" gfx="TB_Anger.png" tags="offensive" maxcharges="0" quality="1" />
 	<passive id="8" cache="firedelay shotspeed range damage" name="Fat Shark" description="Dr.Xia's Favorite" gfx="Fat_Shark.png" tags="offensive" quality="3" />
