@@ -14,4 +14,5 @@
 
 	<trinket id="1" cache="firedelay" name="Lil Piggy" description="Oooo..." gfx="Lil_Piggy.png" />
 	<trinket id="2" cache="" name="Xia's Rosary Bead" description="My crush for Spoon Bender!" gfx="Xia's_Rosary_Bead.png"/>
+	<trinket id="3" cache="tearflag" name="Cracked Spoon Bender" description="It's still faintly magical..." gfx="Cracked_Spoon_Bender.png"/>
 </items>

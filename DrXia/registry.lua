@@ -17,9 +17,12 @@ DrXiaElements.COLLECTIBLE_WINTER_FLOWER_RECORD=Isaac.GetItemIdByName("Winter Flo
 
 DrXiaElements.TRINKET_LIL_PIGGY=Isaac.GetTrinketIdByName("Lil Piggy")
 DrXiaElements.TRINKET_XIAS_ROSARY_BEAD=Isaac.GetTrinketIdByName("Xia's Rosary Bead")
+DrXiaElements.TRINKET_CRACKED_SPOON_BENDER=Isaac.GetTrinketIdByName("Cracked Spoon Bender")
 
 DrXiaElements.CHARACTER_DRXIA=Isaac.GetPlayerTypeByName("DrXia")
+DrXiaElements.CHARACTER_TAINTED_DRXIA=Isaac.GetPlayerTypeByName("Tainted DrXia",true)
 DrXiaElements.COSTUME_DRXIA_HAIR=Isaac.GetCostumeIdByPath("gfx/characters/character_drxia_accessories.anm2")
+DrXiaElements.COSTUME_TAINTED_DRXIA_HAIR=Isaac.GetCostumeIdByPath("gfx/characters/character_Tdrxia_accessories.anm2")
 
 DrXiaElements.CARD_CARD_OF_DRXIA=Isaac.GetCardIdByName("Card of Dr.Xia")
 
@@ -72,6 +75,9 @@ local Trinkets={
 	},
 	[DrXiaElements.TRINKET_XIAS_ROSARY_BEAD]={
 		zh={"夏之念珠段","我推的弯勺！"}
+	},
+	[DrXiaElements.TRINKET_CRACKED_SPOON_BENDER]={
+		zh={"断裂的弯勺魔术","它还有着微弱的魔力..."}
 	}
 }
 local Pills={
@@ -87,6 +93,9 @@ local Cards={
 local Birthrights ={
 	[DrXiaElements.CHARACTER_DRXIA]={
 		zh={"心跳加速"}
+	},
+	[DrXiaElements.CHARACTER_TAINTED_DRXIA]={
+		zh={"带着你的遗志"}
 	}
 }
 

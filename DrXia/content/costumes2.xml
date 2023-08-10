@@ -1,6 +1,7 @@
 <costumes anm2root="gfx/characters/">
 	<costume id="2" anm2path="golden_spoon_bender.anm2" type="passive" hasOverlay="true" />
 	<costume anm2path="character_drxia_accessories.anm2" type="none" priority="99" />
+	<costume anm2path="character_Tdrxia_accessories.anm2" type="none" priority="99" />
 	<costume id="8" anm2path="fat_shark.anm2" type="passive" />
 	<costume id="9" anm2path="tenshi_doll.anm2" type="passive" isFlying="true" />
 	<costume id="10" anm2path="idle_dog.anm2" type="passive" />

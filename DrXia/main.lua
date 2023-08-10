@@ -268,15 +268,15 @@ end
 
 DrXia:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, DrXia.adjustCurse)
 
-local hascostume = false
+local DrXiaHasCostume = false
 function DrXia:GiveDrXiaCostumes(player)
 	if player:GetPlayerType() == DrXiaElements.CHARACTER_DRXIA then
-		if not hascostume then
+		if not DrXiaHasCostume then
 			player:AddNullCostume(DrXiaElements.COSTUME_DRXIA_HAIR)
-			hascostume = true
+			DrXiaHasCostume = true
 		end
-	elseif hascostume then
-		hascostume = false
+	elseif DrXiaHasCostume then
+		DrXiaHasCostume = false
 	end
 end
 
@@ -646,6 +646,7 @@ end
 
 DrXia:AddCallback(ModCallbacks.MC_PRE_PLAYER_COLLISION, DrXia.PlayerCollides, 0) --0 for player while 1 for co-op baby.
 
+local alterRNG = RNG()
 --v1.8.0 starts
 function DrXia:AlterSpoonBender(origin, pool, decrease, seed)
 	local originInfo = Isaac.GetItemConfig():GetCollectible(origin)
@@ -673,17 +674,173 @@ function DrXia:AlterSpoonBender(origin, pool, decrease, seed)
 end
 
 DrXia:AddCallback(ModCallbacks.MC_POST_GET_COLLECTIBLE, DrXia.AlterSpoonBender)
+
+--v2.0.0 starts
+function DrXia:InitCrackedSpoonBender()
+	local player_num = Game():GetNumPlayers()
+	for i = 0, player_num do
+		local currentPlayer = Game():GetPlayer(i)
+		if currentPlayer:HasTrinket(DrXiaElements.TRINKET_CRACKED_SPOON_BENDER) then
+			currentPlayer:GetData().CrackedSpoonBenderTier = false
+		end
+	end
+end
+
+DrXia:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, DrXia.InitCrackedSpoonBender)
+
+function DrXia:ApplyCrackedSpoonBender(player)
+	if player:HasTrinket(DrXiaElements.TRINKET_CRACKED_SPOON_BENDER) then
+		if (Game():GetFrameCount() // 30) % 7 < player:GetTrinketMultiplier(DrXiaElements.TRINKET_CRACKED_SPOON_BENDER) then
+			if not player:GetData().CrackedSpoonBenderTier then
+				player:GetEffects():AddCollectibleEffect(CollectibleType.COLLECTIBLE_SPOON_BENDER, false, 1)
+				player:GetData().CrackedSpoonBenderTier = true
+			end
+		elseif player:GetData().CrackedSpoonBenderTier then
+			player:GetEffects():RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_SPOON_BENDER, 1)
+			player:GetData().CrackedSpoonBenderTier = false
+		end
+	end
+end
+
+DrXia:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, DrXia.ApplyCrackedSpoonBender)
+
+local TaintedDrXiaHasCostume = false
+function DrXia:GiveTaintedDrXiaCostumes(player)
+	if player:GetPlayerType() == DrXiaElements.CHARACTER_TAINTED_DRXIA then
+		if not TaintedDrXiaHasCostume then
+			player:AddNullCostume(DrXiaElements.COSTUME_TAINTED_DRXIA_HAIR)
+			TaintedDrXiaHasCostume = true
+		end
+	elseif TaintedDrXiaHasCostume then
+		TaintedDrXiaHasCostume = false
+	end
+end
+
+DrXia:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, DrXia.GiveTaintedDrXiaCostumes)
+
+DrXia:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(self, player, flag)
+	if player:GetPlayerType() == DrXiaElements.CHARACTER_TAINTED_DRXIA then
+		DrXia:addTearsModifier(player, 0.7)
+	end
+end, CacheFlag.CACHE_FIREDELAY)
+
+DrXia:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(self, continued)
+	local player = Isaac.GetPlayer(0)
+	if not continued and player:GetPlayerType() == DrXiaElements.CHARACTER_TAINTED_DRXIA then
+		player:AddTrinket(DrXiaElements.TRINKET_CRACKED_SPOON_BENDER)
+	end
+end)
+
+local TaintedAlterRNG = RNG()
+DrXia:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
+	TaintedAlterRNG = RNG()
+	TaintedAlterRNG:SetSeed(Game():GetSeeds():GetStartSeed(), 35)
+end)
+
+function DrXia:TaintedAlterSpoonBender(origin, pool, decrease, seed)
+	local player_num = Game():GetNumPlayers()
+	local shouldAlter = false
+	for i = 0, player_num do
+		local currentPlayer = Game():GetPlayer(i)
+		if currentPlayer:GetPlayerType() == DrXiaElements.CHARACTER_TAINTED_DRXIA then
+			shouldAlter = true
+		end
+	end
+	if shouldAlter then
+		local diceResult = TaintedAlterRNG:RandomFloat()
+		if diceResult < 0.2 then
+			return CollectibleType.COLLECTIBLE_SPOON_BENDER
+		end
+	end
+end
+
+DrXia:AddCallback(ModCallbacks.MC_POST_GET_COLLECTIBLE, DrXia.TaintedAlterSpoonBender)
+
+local ItemPools = { ItemPoolType.POOL_TREASURE, ItemPoolType.POOL_TREASURE, ItemPoolType.POOL_TREASURE,
+	ItemPoolType.POOL_SHOP, ItemPoolType.POOL_BOSS, ItemPoolType.POOL_DEVIL, ItemPoolType.POOL_ANGEL,
+	ItemPoolType.POOL_SECRET, ItemPoolType.POOL_LIBRARY, ItemPoolType.POOL_DEMON_BEGGAR, ItemPoolType.POOL_CURSE,
+	ItemPoolType.POOL_KEY_MASTER, ItemPoolType.POOL_ULTRA_SECRET, ItemPoolType.POOL_PLANETARIUM }
+
+function DrXia:TaintedSpawnNewItems(pickup, entity, low)
+	if pickup.Variant == PickupVariant.PICKUP_COLLECTIBLE and pickup.SubType == CollectibleType.COLLECTIBLE_SPOON_BENDER and entity.Type == EntityType.ENTITY_PLAYER and entity:ToPlayer():GetPlayerType() == DrXiaElements.CHARACTER_TAINTED_DRXIA
+		and not (pickup.Price > entity:ToPlayer():GetNumCoins())
+	then
+		Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, pickup.Position, Vector.Zero, nil)
+		local player = entity:ToPlayer()
+		player:AnimateSad()
+		pickup:Remove()
+
+		local alterRNG = RNG()
+		local seed = Game():GetRoom():GetSpawnSeed()
+		alterRNG:SetSeed(seed, 35) --35 is officially recommended
+		local diceResult = alterRNG:RandomInt(#ItemPools) + 1
+
+		local ExistCollectibles = Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)
+		local index = pickup.OptionsPickupIndex
+		if index == 0 then
+			index = 66
+			while true do
+				local found = true
+				for _, item in ipairs(ExistCollectibles) do
+					if item:ToPickup().OptionsPickupIndex == index then
+						index = index + 1
+						found = false
+						break
+					end
+				end
+				if found then
+					break
+				end
+			end
+		end
+		local option1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE,
+			Game():GetItemPool():GetCollectible(ItemPools[diceResult], true, seed, CollectibleType.COLLECTIBLE_BREAKFAST),
+			Isaac.GetFreeNearPosition(player.Position, 100), Vector.Zero, nil):ToPickup()
+		local PoolForOption2 = Game():GetItemPool():GetPoolForRoom(Game():GetRoom():GetType(),seed)
+		if Game():GetRoom():GetType() == RoomType.ROOM_CHALLENGE and Game():GetLevel():HasBossChallenge() then
+			PoolForOption2 = ItemPoolType.POOL_BOSS
+		end
+		local option2 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE,
+			Game():GetItemPool():GetCollectible(PoolForOption2, true, seed, CollectibleType.COLLECTIBLE_BREAKFAST),
+			Isaac.GetFreeNearPosition(player.Position, 100), Vector.Zero, nil):ToPickup()
+		option1.OptionsPickupIndex = index
+		option2.OptionsPickupIndex = index
+		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+			local option3 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE,
+				Game():GetItemPool():GetCollectible(
+					Game():GetItemPool():GetPoolForRoom(Game():GetRoom():GetType(), seed),
+					true,
+					seed, CollectibleType.COLLECTIBLE_BREAKFAST), Isaac.GetFreeNearPosition(player.Position, 100),
+				Vector.Zero, nil):ToPickup()
+			option3.OptionsPickupIndex = index
+		end
+		if Game():GetRoom():GetType() == RoomType.ROOM_DEVIL or Game():GetRoom():GetType() == RoomType.ROOM_BLACK_MARKET and pickup.Price == -1 then
+			player:TakeDamage(4, DamageFlag.DAMAGE_INVINCIBLE  | DamageFlag.DAMAGE_NO_PENALTIES,
+				EntityRef(player), 0)
+		else
+			player:TakeDamage(2, DamageFlag.DAMAGE_INVINCIBLE  | DamageFlag.DAMAGE_NO_PENALTIES,
+				EntityRef(player), 0)
+		end
+		return false
+	end
+end
+
+DrXia:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, DrXia.TaintedSpawnNewItems, 100)
+
+
 -- global initialization starts
 function DrXia:InitVariables(continued)
 	RunContinued = continued
 	if not continued then
 		lastjumped = -30
 		optionsdone = false
-		hascostume = false
+		DrXiaHasCostume = false
+		TaintedDrXiaHasCostume = false
 	end
 end
 
 DrXia:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, DrXia.InitVariables)
+
 
 local eid_support = include("eid_support")
 local eid_collectibles, eid_trinkets, eid_cards, eid_pills = eid_support(DrXiaElements)
@@ -703,5 +860,8 @@ if EID then
 	end
 	EID:addBirthright(DrXiaElements.CHARACTER_DRXIA,
 		"{{Collectible" .. DrXiaElements.COLLECTIBLE_CARDIOGRAPH .. "}}心电图仪提供的伤害修正更高", "夏老师",
+		"zh_cn")
+	EID:addBirthright(DrXiaElements.CHARACTER_TAINTED_DRXIA,
+		"{{Collectible3}}弯勺魔术分解时，额外增加一个当前房间道具池的选项", "堕化夏老师",
 		"zh_cn")
 end

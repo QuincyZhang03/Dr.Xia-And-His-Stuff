@@ -4,4 +4,10 @@
           portrait="playerportrait_drxia.png" 
           skinColor="-1"
 		  birthright="Faster Heart Beats" />
+    <player name="Tainted DrXia" skin="character_Tdrxia.png" hp="8"
+          nameimage="playername_Tdrxia.png" 
+          portrait="playerportrait_Tdrxia.png" 
+          skinColor="-1"
+          bSkinParent="DrXia"
+	      birthright="Take Your Will" />
 </players>

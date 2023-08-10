@@ -135,12 +135,22 @@ return function(DrXiaElements)
 			"zh_cn"
 		},
 		{
+			DrXiaElements.TRINKET_CRACKED_SPOON_BENDER,
+			"每隔5秒钟获得1秒{{Collectible3}}弯勺魔术的效果",
+			"断裂的弯勺魔术",
+			"zh_cn"
+		},
+		{
 			DrXiaElements.TRINKET_LIL_PIGGY,
 			"↑ {{Tears}} +1 tears when a layer of {{ColorCyan}}stable{{ColorText}} homing effect is stacked, including familiars who fire their own homing tears"
 		},
 		{
 			DrXiaElements.TRINKET_XIAS_ROSARY_BEAD,
 			"Item has a 8% chance to alter to {{Collectible3}}Spoon Bender# 2% chance to alter to {{Collectible"..DrXiaElements.COLLECTIBLE_GOLDEN_SPOON_BENDER.."}}Golden Spoon Bender",
+		},
+		{
+			DrXiaElements.TRINKET_XIAS_ROSARY_BEAD,
+			"Grant the effect of {{Collectible3}}Spoon Bender for 1 seconds after each 5-second interval"
 		}
 
 	}
