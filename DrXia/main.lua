@@ -763,13 +763,11 @@ local ItemPools = { ItemPoolType.POOL_TREASURE, ItemPoolType.POOL_TREASURE, Item
 
 function DrXia:TaintedSpawnNewItems(pickup, entity, low)
 	if pickup.Variant == PickupVariant.PICKUP_COLLECTIBLE and pickup.SubType == CollectibleType.COLLECTIBLE_SPOON_BENDER and entity.Type == EntityType.ENTITY_PLAYER and entity:ToPlayer():GetPlayerType() == DrXiaElements.CHARACTER_TAINTED_DRXIA
-		and not (pickup.Price > entity:ToPlayer():GetNumCoins())
 	then
 		Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, pickup.Position, Vector.Zero, nil)
 		local player = entity:ToPlayer()
 		player:AnimateSad()
 		pickup:Remove()
-
 		local alterRNG = RNG()
 		local seed = Game():GetRoom():GetSpawnSeed()
 		alterRNG:SetSeed(seed, 35) --35 is officially recommended
