@@ -19,7 +19,7 @@ Last but not least, thanks to the translation library provided by Goganidze from
 Sincere gratitude to @Specter for the effort on the character menu!
 
 (EID is completely supported in both Simplified Chinese and English. Have fun:) )</description>
-    <version>2.0.4</version>
+    <version>2.0.5</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>

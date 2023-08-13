@@ -793,14 +793,14 @@ function DrXia:TaintedSpawnNewItems(pickup, entity, low)
 		end
 		local option1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE,
 			Game():GetItemPool():GetCollectible(ItemPools[diceResult], true, seed, CollectibleType.COLLECTIBLE_BREAKFAST),
-			Isaac.GetFreeNearPosition(player.Position, 100), Vector.Zero, nil):ToPickup()
+			Isaac.GetFreeNearPosition(player.Position, 70), Vector.Zero, nil):ToPickup()
 		local PoolForOption2 = Game():GetItemPool():GetPoolForRoom(Game():GetRoom():GetType(),seed)
 		if Game():GetRoom():GetType() == RoomType.ROOM_CHALLENGE and Game():GetLevel():HasBossChallenge() then
 			PoolForOption2 = ItemPoolType.POOL_BOSS
 		end
 		local option2 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE,
 			Game():GetItemPool():GetCollectible(PoolForOption2, true, seed, CollectibleType.COLLECTIBLE_BREAKFAST),
-			Isaac.GetFreeNearPosition(player.Position, 100), Vector.Zero, nil):ToPickup()
+			Isaac.GetFreeNearPosition(player.Position, 70), Vector.Zero, nil):ToPickup()
 		option1.OptionsPickupIndex = index
 		option2.OptionsPickupIndex = index
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
@@ -808,11 +808,11 @@ function DrXia:TaintedSpawnNewItems(pickup, entity, low)
 				Game():GetItemPool():GetCollectible(
 					Game():GetItemPool():GetPoolForRoom(Game():GetRoom():GetType(), seed),
 					true,
-					seed, CollectibleType.COLLECTIBLE_BREAKFAST), Isaac.GetFreeNearPosition(player.Position, 100),
+					seed, CollectibleType.COLLECTIBLE_BREAKFAST), Isaac.GetFreeNearPosition(player.Position, 70),
 				Vector.Zero, nil):ToPickup()
 			option3.OptionsPickupIndex = index
 		end
-		if Game():GetRoom():GetType() == RoomType.ROOM_DEVIL or Game():GetRoom():GetType() == RoomType.ROOM_BLACK_MARKET and pickup.Price == -1 then
+		if (Game():GetRoom():GetType() == RoomType.ROOM_DEVIL or Game():GetRoom():GetType() == RoomType.ROOM_BLACK_MARKET) and pickup.Price == -1 then
 			player:TakeDamage(4, DamageFlag.DAMAGE_INVINCIBLE  | DamageFlag.DAMAGE_NO_PENALTIES,
 				EntityRef(player), 0)
 		else
